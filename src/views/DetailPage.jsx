@@ -14,16 +14,20 @@ export default function DetailPage() {
     <>
       <main
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)) ,url(${game.background_image})`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)) ,url(${game.background_image})`,
         }}
-        className="min-h-screen bg-center bg-cover bg-fixed"
+        className="relative min-h-screen bg-center bg-cover bg-fixed"
       >
-        <FaCircleArrowLeft
-          className="text-3xl fixed bottom-6 text-white left-6 cursor-pointer"
-          onClick={() => navigate(-1)}
-        />
-        <Header game={game} />
-        {profile && <BodySection game={game} profile_id={profile.id} />}
+        <div className="pointer-events-none absolute inset-0 bg-black/30" />
+
+        <div className="relative z-10">
+          <FaCircleArrowLeft
+            className="text-3xl fixed bottom-6 text-white left-6 cursor-pointer"
+            onClick={() => navigate(-1)}
+          />
+          <Header game={game} />
+          {profile && <BodySection game={game} profile_id={profile.id} />}
+        </div>
       </main>
     </>
   );
