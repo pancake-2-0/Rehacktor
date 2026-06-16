@@ -13,6 +13,8 @@ import {
 import AuthenticationLayout from "../components/layouts/AuthenticationLayout";
 import RegisterPage from "../views/auth/RegisterPage";
 import LoginPage from "../views/auth/LoginPage";
+import ProfilePage from "../views/auth/ProfilePage";
+import ProfileSettingPage from "../views/auth/ProfileSettingPage";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +50,14 @@ const router = createBrowserRouter([
       {
         path: routes.login,
         Component: LoginPage,
+      },
+      {
+        path: routes.profile,
+        Component: ProfilePage,
+      },
+      {
+        path: routes.profile_settings,
+        Component: ProfileSettingPage,
       },
     ],
   },

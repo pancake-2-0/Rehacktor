@@ -41,9 +41,21 @@ export function UserContextProvider({ children }) {
     await supabase.auth.signInWithPassword(loggedUser);
     await getUser();
   };
+
+  const updateProfile = async (newProfile) => {
+    const { data, error } = await supabase
+      .from("profiles")
+      .update(newProfile)
+      .eq("id", user.id)
+      .select()
+      .single();
+
+    await getUser();
+  };
+
   return (
     <UserContext.Provider
-      value={{ user, profile, signOut, signUp, login, getUser }}
+      value={{ user, profile, signOut, signUp, login, getUser, updateProfile }}
     >
       {children}
     </UserContext.Provider>

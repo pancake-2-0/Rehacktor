@@ -50,11 +50,6 @@ export default function Navbar() {
             tabIndex={-1}
             className="menu menu-sm dropdown-content bg-[#1a1c20] text-white border border-[#2d3139] rounded-box z-[100] mt-3 w-52 p-2 shadow-2xl"
           >
-            <li>
-              <Link to={routes.home} className="hover:bg-[#2d3139]">
-                Homepage
-              </Link>
-            </li>
             {(!user && (
               <>
                 <li>
@@ -69,11 +64,18 @@ export default function Navbar() {
                 </li>
               </>
             )) || (
-              <li>
-                <button onClick={handleLogout} className="hover:bg-[#2d3139]">
-                  Logout
-                </button>
-              </li>
+              <>
+                <li>
+                  <Link to={routes.profile} className="hover:bg-[#2d3139]">
+                    Profile
+                  </Link>
+                </li>
+                <li>
+                  <button onClick={handleLogout} className="hover:bg-[#2d3139]">
+                    Logout
+                  </button>
+                </li>
+              </>
             )}
           </ul>
         </div>
