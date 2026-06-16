@@ -75,7 +75,7 @@ export default function BodySection({ game, profile_id }) {
 
   return (
     <section className="grid grid-cols-1 gap-6 px-4 py-8 lg:grid-cols-6 lg:px-10">
-      <div className="lg:col-span-5 flex flex-col items-center rounded-[32px] border border-[#2d3139] bg-[#131518]/80 p-6 shadow-[0_30px_60px_-40px_rgba(0,0,0,0.8)]">
+      <div className="lg:col-span-5 flex flex-col items-center rounded-4xl border border-[#2d3139] bg-[#131518]/80 p-6 shadow-[0_30px_60px_-40px_rgba(0,0,0,0.8)]">
         <p className="text-white text-2xl font-semibold mb-5">Reviews</p>
         <textarea
           className="textarea w-full max-w-3xl rounded-3xl border border-[#2d3139] bg-[#0e1014] px-5 py-4 text-white placeholder:text-gray-500 focus:border-white/30 focus:outline-none"
@@ -110,7 +110,7 @@ export default function BodySection({ game, profile_id }) {
         {(isFavourite && (
           <button
             type="button"
-            className="flex h-20 w-20 items-center justify-center rounded-full border border-white/10 bg-gradient-to-br from-red-500/15 to-transparent text-red-500 shadow-[0_24px_60px_-30px_rgba(255,0,0,0.9)] transition duration-300 hover:-translate-y-1 hover:bg-red-500/20 focus:outline-none focus:ring-2 focus:ring-red-500/50"
+            className="flex h-20 w-20 items-center justify-center rounded-full border border-white/10 bg-linear-to-br from-red-500/15 to-transparent text-red-500 shadow-[0_24px_60px_-30px_rgba(255,0,0,0.9)] transition duration-300 hover:-translate-y-1 hover:bg-red-500/20 focus:outline-none focus:ring-2 focus:ring-red-500/50"
             onClick={remove_game}
             aria-label="Remove from favourites"
           >
