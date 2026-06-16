@@ -9,6 +9,7 @@ import { FaEnvelope, FaGamepad, FaUser, FaUserCog } from "react-icons/fa";
 export default function ProfilePage() {
   const { user, profile } = useContext(UserContext);
   const [avatarUrl, setAvatarUrl] = useState();
+  const [userFavourites, setUserFavourites] = useState();
 
   const download_avatar = async () => {
     if (profile) {
@@ -20,8 +21,19 @@ export default function ProfilePage() {
     }
   };
 
+  const get_Favourites = async () => {
+    if (profile) {
+      let { data: favourites, error } = await supabase
+        .from("favourites")
+        .select("*")
+        .eq("profile_id", profile.id);
+      setUserFavourites(favourites);
+    }
+  };
+
   useEffect(() => {
     download_avatar();
+    get_Favourites();
   }, [profile]);
 
   return (
@@ -91,6 +103,37 @@ export default function ProfilePage() {
                   {user.email}
                 </p>
               </div>
+            </div>
+          </article>
+        </section>
+      )}
+
+      {userFavourites && userFavourites.length > 0 && (
+        <section className="mx-auto mt-12 w-full max-w-5xl">
+          <article className="rounded-box border border-[#2d3139] bg-[#1a1c20] p-6 shadow-2xl sm:p-8">
+            <div className="mb-6 flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-box bg-[#2d3139] text-white">
+                <FaGamepad />
+              </div>
+              <div>
+                <h3 className="font-electro text-2xl text-white">
+                  Your Favourites
+                </h3>
+                <p className="text-sm text-gray-400">Games you love</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              {userFavourites.map((game) => (
+                <div
+                  key={game.id}
+                  className="group rounded-box border border-[#2d3139] bg-[#111317] overflow-hidden shadow-lg hover:border-white/30 transition-all duration-300 p-4"
+                >
+                  <h4 className="text-sm font-semibold text-white line-clamp-2 group-hover:text-yellow-400 transition-colors duration-300">
+                    {game.game_name}
+                  </h4>
+                </div>
+              ))}
             </div>
           </article>
         </section>

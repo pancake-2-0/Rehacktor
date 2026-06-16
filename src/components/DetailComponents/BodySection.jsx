@@ -21,7 +21,14 @@ export default function BodySection({ game, profile_id }) {
   const add_game = async () => {
     const { data, error } = await supabase
       .from("favourites")
-      .insert([{ profile_id, game_id: game.id, game_name: game.name }])
+      .insert([
+        {
+          profile_id,
+          game_id: game.id,
+          game_name: game.name,
+          background_image: game.background_image,
+        },
+      ])
       .select();
     setIsFavourite(true);
   };
