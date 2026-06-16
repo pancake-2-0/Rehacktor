@@ -9,12 +9,14 @@ import {
   getAllGenres,
   getFilteredByGenreGames,
   getSearchedGames,
+  getGameDetails,
 } from "./loaders";
 import AuthenticationLayout from "../components/layouts/AuthenticationLayout";
 import RegisterPage from "../views/auth/RegisterPage";
 import LoginPage from "../views/auth/LoginPage";
 import ProfilePage from "../views/auth/ProfilePage";
 import ProfileSettingPage from "../views/auth/ProfileSettingPage";
+import DetailPage from "../views/DetailPage";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +62,11 @@ const router = createBrowserRouter([
         Component: ProfileSettingPage,
       },
     ],
+  },
+  {
+    path: routes.detail,
+    Component: DetailPage,
+    loader: getGameDetails,
   },
 ]);
 
