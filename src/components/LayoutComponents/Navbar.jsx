@@ -142,15 +142,6 @@ export default function Navbar() {
         >
           <FaSearch />
         </Link>
-
-        <button
-          className={`btn btn-ghost btn-circle hover:bg-[#2d3139] text-lg ${isOpen ? "hidden md:flex" : "flex"}`}
-        >
-          <div className="indicator">
-            <FaBell />
-            <span className="badge badge-xs badge-error indicator-item"></span>
-          </div>
-        </button>
       </div>
     </div>
   );
