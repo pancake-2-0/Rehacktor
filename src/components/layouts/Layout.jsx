@@ -9,11 +9,11 @@ export default function Layout() {
   return (
     <>
       <Navbar />
-      <section className="grid grid-cols-1 md:grid-cols-7 gap-4">
+      <section className="grid grid-cols-1 md:grid-cols-[180px_minmax(0,1fr)] lg:grid-cols-[220px_minmax(0,1fr)] gap-4">
         <div className="min-w-0">
           <Sidebar genres={genres} />
         </div>
-        <div className="min-w-0 md:col-span-6">
+        <div className="min-w-0">
           <Outlet />
         </div>
       </section>

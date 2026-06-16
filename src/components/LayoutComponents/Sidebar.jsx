@@ -5,8 +5,8 @@ export default function Sidebar({ genres }) {
 
   return (
     <>
-      <nav className="w-full max-w-full bg-[#1a1c20] text-white border-b md:border-b-0 md:border-r border-[#2d3139] p-3 sm:p-4 h-auto md:h-[calc(100vh-75px)] md:sticky md:top-[75px] overflow-hidden md:overflow-y-auto font-roboto transition-all duration-300 z-40">
-        <h2 className="text-sm font-bold font-electro tracking-widest mb-4 text-gray-400 uppercase px-2 hidden md:block">
+      <nav className="w-full max-w-full bg-[#1a1c20] text-white border-b md:border-b-0 md:border-r border-[#2d3139] p-3 sm:p-4 h-auto md:h-[calc(100vh-75px)] md:sticky md:top-[75px] overflow-hidden md:overflow-y-auto font-roboto transition-all duration-300 z-10">
+        <h2 className="text-sm font-bold font-electro tracking-widest mb-4 text-gray-400 uppercase px-2 hidden md:block leading-6">
           Filtra per Genere
         </h2>
 
@@ -15,10 +15,10 @@ export default function Sidebar({ genres }) {
             const isActive = genreSlug === genre.slug;
 
             return (
-              <li className="shrink-0" key={genre.id}>
+              <li className="shrink-0 md:shrink md:w-full" key={genre.id}>
                 <Link
                   to={`/genre/${genre.slug}`}
-                  className={`flex items-center gap-3 px-3 sm:px-4 py-2.5 rounded-xl font-medium transition-all duration-200 whitespace-nowrap text-sm
+                  className={`flex items-center gap-3 px-3 sm:px-4 py-2.5 rounded-xl font-medium transition-all duration-200 whitespace-nowrap md:whitespace-normal text-sm md:text-xs lg:text-sm leading-5 text-left
 
                     ${
                       isActive
@@ -26,7 +26,7 @@ export default function Sidebar({ genres }) {
                         : "hover:bg-[#2d3139] text-gray-400 hover:text-white active:bg-[#3f444e]"
                     }`}
                 >
-                  <span>{genre.name}</span>
+                  <span className="min-w-0">{genre.name}</span>
                 </Link>
               </li>
             );

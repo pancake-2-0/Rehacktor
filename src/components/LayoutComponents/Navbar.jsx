@@ -1,7 +1,8 @@
 import { FaGamepad, FaSearch, FaBell } from "react-icons/fa";
-import { useState } from "react";
-import { Link } from "react-router";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router";
 import routes from "../../router/routes";
+import { UserContext } from "../../context/UserContext";
 
 export default function Navbar() {
   const [slug, setSlug] = useState();
@@ -11,15 +12,23 @@ export default function Navbar() {
     setSlug(e.target.value);
   };
 
+  const navigate = useNavigate();
+
+  const { user, signOut } = useContext(UserContext);
+
+  const handleLogout = async () => {
+    await signOut();
+    navigate("/");
+  };
   return (
-    <div className="navbar bg-[#1a1c20] text-white border-b border-[#2d3139] shadow-md px-4 font-roboto mb-5 relative">
+    <div className="navbar bg-[#1a1c20] text-white border-b border-[#2d3139] shadow-md px-4 font-roboto mb-5 relative z-50">
       {/* NAVBAR START: Menu Dropdown classico per mobile/desktop */}
       <div className="navbar-start">
-        <div className="dropdown">
+        <div className="dropdown z-[50]">
           <div
             tabIndex={0}
             role="button"
-            className="btn btn-ghost btn-circle hover:bg-[#2d3139]"
+            className="btn btn-ghost h-10 min-h-10 px-2 sm:px-3 gap-2 hover:bg-[#2d3139]"
           >
             {/* Icona menu ad hamburger nativa */}
             <svg
@@ -39,19 +48,33 @@ export default function Navbar() {
           </div>
           <ul
             tabIndex={-1}
-            className="menu menu-sm dropdown-content bg-[#1a1c20] text-white border border-[#2d3139] rounded-box z-1 mt-3 w-52 p-2 shadow-2xl"
+            className="menu menu-sm dropdown-content bg-[#1a1c20] text-white border border-[#2d3139] rounded-box z-[100] mt-3 w-52 p-2 shadow-2xl"
           >
             <li>
               <Link to={routes.home} className="hover:bg-[#2d3139]">
                 Homepage
               </Link>
             </li>
-            <li>
-              <a className="hover:bg-[#2d3139]">Portfolio</a>
-            </li>
-            <li>
-              <a className="hover:bg-[#2d3139]">About</a>
-            </li>
+            {(!user && (
+              <>
+                <li>
+                  <Link to={routes.register} className="hover:bg-[#2d3139]">
+                    Register
+                  </Link>
+                </li>
+                <li>
+                  <Link to={routes.login} className="hover:bg-[#2d3139]">
+                    Login
+                  </Link>
+                </li>
+              </>
+            )) || (
+              <li>
+                <button onClick={handleLogout} className="hover:bg-[#2d3139]">
+                  Logout
+                </button>
+              </li>
+            )}
           </ul>
         </div>
       </div>
